@@ -5,21 +5,40 @@
             "name": "AI Image Generator",
             "description": "Create stunning images using advanced AI models",
             "icon": "/assets/images/image-icon.svg",
-            "category": "image"
+            "category": "image",
+            "status": "active",
+            "features": [
+                "Multiple art styles",
+                "Custom resolutions",
+                "Batch processing"
+            ]
         },
         {
             "id": "text-generator",
             "name": "AI Text Generator",
             "description": "Generate creative text content with AI",
             "icon": "/assets/images/text-icon.svg",
-            "category": "text"
+            "category": "text",
+            "status": "active",
+            "features": [
+                "Multiple languages",
+                "Various content types",
+                "Style customization"
+            ]
         },
         {
             "id": "code-assistant",
             "name": "AI Code Assistant",
             "description": "Get help with coding and debugging",
             "icon": "/assets/images/code-icon.svg",
-            "category": "code"
+            "category": "code",
+            "status": "active",
+            "features": [
+                "Code completion",
+                "Bug detection",
+                "Code optimization"
+            ]
         }
     ]
 }
+
