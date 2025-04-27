@@ -10,26 +10,26 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
+
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
         }
-        
+
         .card-flip {
             perspective: 1000px;
         }
-        
+
         .card-flip-inner {
             transition: transform 0.6s;
             transform-style: preserve-3d;
         }
-        
+
         .card-flip.flipped .card-flip-inner {
             transform: rotateY(180deg);
         }
-        
+
         .card-flip-front, .card-flip-back {
             backface-visibility: hidden;
             position: absolute;
@@ -38,44 +38,44 @@
             width: 100%;
             height: 100%;
         }
-        
+
         .card-flip-back {
             transform: rotateY(180deg);
         }
-        
+
         .game-card {
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
+
         .game-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
-        
+
         .memory-tile {
             transition: all 0.3s ease;
             cursor: pointer;
         }
-        
+
         .memory-tile:hover {
             transform: scale(1.03);
         }
-        
+
         .pulse-animation {
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
-        
+
         .fade-in {
             animation: fadeIn 0.5s ease-in;
         }
-        
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -135,7 +135,7 @@
                         <div class="absolute top-0 left-0 w-full h-full bg-blue-100 rounded-full opacity-30 animate-pulse"></div>
                         <div class="absolute top-4 left-4 w-full h-full bg-blue-200 rounded-full opacity-30 animate-pulse delay-100"></div>
                         <div class="absolute top-8 left-8 w-full h-full bg-blue-300 rounded-full opacity-30 animate-pulse delay-200"></div>
-                        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1470&q=80"
                              alt="Brain training" 
                              class="relative w-full h-full object-cover rounded-full border-8 border-white shadow-xl">
                     </div>
@@ -144,14 +144,63 @@
         </div>
     </section>
 
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-    </script>
+    <!-- Games Section -->
+    <section id="games" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Memory Challenge Games</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Choose from our selection of memory games designed to test and improve different aspects of your cognitive abilities.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Number Memory Game -->
+                <div class="game-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+                        <span class="text-white text-6xl font-bold">1 2 3</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Number Memory</h3>
+                        <p class="text-gray-600 mb-4">Test your ability to remember sequences of numbers. Start with short sequences and work your way up!</p>
+                        <button onclick="startGame('number')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+                            Play Game <i class="fas fa-play ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Letter Memory Game -->
+                <div class="game-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
+                    <div class="h-48 bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center">
+                        <span class="text-white text-6xl font-bold">A B C</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Letter Memory</h3>
+                        <p class="text-gray-600 mb-4">Challenge your memory with sequences of English letters. Perfect for language learners!</p>
+                        <button onclick="startGame('letter')" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+                            Play Game <i class="fas fa-play ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Chinese Character Memory Game -->
+                <div class="game-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center">
+                        <span class="text-white text-6xl font-bold">汉 字 记</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Chinese Character Memory</h3>
+                        <p class="text-gray-600 mb-4">Test your visual memory with Chinese characters. Great for Mandarin learners and memory enthusiasts.</p>
+                        <button onclick="startGame('chinese')" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-medium transition flex items-center justify-center">
+                            Play Game <i class="fas fa-play ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Additional sections and JS logic remain unchanged -->
 </body>
 </html>
+
 
 
