@@ -6,8 +6,70 @@
     <title>AI Suite - Advanced AI Tools Collection</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* 添加必要的内联样式 */
+        .nav-menu {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tool-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            background: #10B981;
+            color: white;
+        }
+
+        .tool-actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+    </style>
 </head>
 <body>
+    <!-- 导航菜单 -->
+    <nav class="nav-menu">
+        <div class="container nav-container">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <h1 style="font-size: 1.5rem;">AI Suite</h1>
+            </a>
+            <div style="display: flex; gap: 2rem;">
+                <a href="#tools" style="text-decoration: none; color: inherit;">Tools</a>
+                <a href="#features" style="text-decoration: none; color: inherit;">Features</a>
+                <a href="#contact" style="text-decoration: none; color: inherit;">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 头部区域 -->
     <header class="header">
         <div class="container">
             <h1>AI Suite</h1>
@@ -16,62 +78,159 @@
     </header>
 
     <main>
-        <section class="container tools-grid">
+        <!-- 工具卡片区域 -->
+        <section id="tools" class="container tools-grid">
             <div class="tool-card">
+                <div class="tool-status">Active</div>
                 <div class="tool-icon">🎨</div>
                 <h3>Image Generation</h3>
                 <p>Create stunning images using advanced AI models like Stable Diffusion.</p>
+                <div class="tool-actions">
+                    <button class="btn" onclick="handleToolClick('image-gen')">
+                        <i class="fas fa-play"></i> Try Now
+                    </button>
+                    <button class="btn" onclick="showDemo('image-gen')" style="background: var(--accent-color);">
+                        <i class="fas fa-eye"></i> Demo
+                    </button>
+                </div>
             </div>
+
             <div class="tool-card">
+                <div class="tool-status">Active</div>
                 <div class="tool-icon">🔄</div>
                 <h3>Image Variation</h3>
                 <p>Generate multiple variations of your images with AI assistance.</p>
+                <div class="tool-actions">
+                    <button class="btn" onclick="handleToolClick('image-var')">
+                        <i class="fas fa-play"></i> Try Now
+                    </button>
+                    <button class="btn" onclick="showDemo('image-var')" style="background: var(--accent-color);">
+                        <i class="fas fa-eye"></i> Demo
+                    </button>
+                </div>
             </div>
+
             <div class="tool-card">
+                <div class="tool-status">Active</div>
                 <div class="tool-icon">✨</div>
                 <h3>Image Enhancement</h3>
                 <p>Enhance and upscale your images using AI technology.</p>
+                <div class="tool-actions">
+                    <button class="btn" onclick="handleToolClick('image-enhance')">
+                        <i class="fas fa-play"></i> Try Now
+                    </button>
+                    <button class="btn" onclick="showDemo('image-enhance')" style="background: var(--accent-color);">
+                        <i class="fas fa-eye"></i> Demo
+                    </button>
+                </div>
             </div>
         </section>
 
-        <section class="features-section">
+        <!-- 特性区域 -->
+        <section id="features" class="features-section">
             <div class="container">
                 <h2>Key Features</h2>
                 <div class="feature-list">
                     <div>
-                        <h3>Easy Integration</h3>
+                        <h3><i class="fas fa-plug"></i> Easy Integration</h3>
                         <p>Simple API integration with your existing projects.</p>
                     </div>
                     <div>
-                        <h3>High Performance</h3>
+                        <h3><i class="fas fa-bolt"></i> High Performance</h3>
                         <p>Fast processing and optimal resource utilization.</p>
                     </div>
                     <div>
-                        <h3>Customizable</h3>
+                        <h3><i class="fas fa-sliders-h"></i> Customizable</h3>
                         <p>Flexible settings to match your specific needs.</p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- 行动召唤区域 -->
         <section class="cta-section">
             <div class="container">
                 <h2>Start Using AI Suite Today</h2>
                 <p>Transform your workflow with our powerful AI tools</p>
-                <a href="#" class="btn">Get Started</a>
+                <button class="btn" onclick="getStarted()" style="background: white; color: var(--primary-color);">
+                    Get Started
+                </button>
             </div>
         </section>
     </main>
 
-    <footer class="container" style="padding: 2rem 0; text-align: center;">
+    <!-- 页脚 -->
+    <footer id="contact" class="container" style="padding: 2rem 0; text-align: center;">
         <p>© 2024 AI Suite. All rights reserved.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#" style="text-decoration: none; color: inherit; margin: 0 1rem;">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="#" style="text-decoration: none; color: inherit; margin: 0 1rem;">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
+            <a href="#" style="text-decoration: none; color: inherit; margin: 0 1rem;">
+                <i class="fas fa-envelope"></i> Contact
+            </a>
+        </div>
     </footer>
-    <script src="assets/js/main.js"></script>
+
+    <!-- 加载动画 -->
+    <div class="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- 脚本 -->
+    <script>
+        // 工具点击处理
+        function handleToolClick(toolId) {
+            showLoading();
+            setTimeout(() => {
+                hideLoading();
+                window.location.href = `/tools/${toolId}`;
+            }, 1000);
+        }
+
+        // 演示功能
+        function showDemo(toolId) {
+            showLoading();
+            setTimeout(() => {
+                hideLoading();
+                window.location.href = `/demos/${toolId}`;
+            }, 1000);
+        }
+
+        // 开始使用
+        function getStarted() {
+            showLoading();
+            setTimeout(() => {
+                hideLoading();
+                window.location.href = '/register';
+            }, 1000);
+        }
+
+        // 显示加载动画
+        function showLoading() {
+            document.querySelector('.loading').style.display = 'flex';
+        }
+
+        // 隐藏加载动画
+        function hideLoading() {
+            document.querySelector('.loading').style.display = 'none';
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
-
-
-
 
 
 
