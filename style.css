@@ -144,3 +144,63 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* 在原有样式基础上添加 */
+.tool-interface {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+}
+
+.tool-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+.select-field {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background-color: white;
+}
+
+.option-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.result-container {
+    min-height: 300px;
+    border: 2px dashed #e5e7eb;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.result-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .tool-interface {
+        grid-template-columns: 1fr;
+    }
+}
+
+
