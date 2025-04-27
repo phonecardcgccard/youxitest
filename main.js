@@ -2,13 +2,13 @@ class AIToolsSuite {
     constructor() {
         this.tools = [];
         this.isLoading = false;
+        this.init();
     }
 
     async init() {
         try {
             await this.loadTools();
             this.setupEventListeners();
-            this.renderTools();
         } catch (error) {
             console.error('初始化失败:', error);
             this.showError('加载工具失败，请刷新页面重试');
@@ -17,47 +17,63 @@ class AIToolsSuite {
 
     async loadTools() {
         try {
-            const response = await fetch('assets/data/tools.json');
-            if (!response.ok) throw new Error('工具数据加载失败');
+            const response = await fetch('/assets/data/tools.json');
+            if (!response.ok) {
+                throw new Error('工具数据加载失败');
+            }
             const data = await response.json();
             this.tools = data.tools;
+            return this.tools;
         } catch (error) {
-            throw new Error('加载工具数据时出错: ' + error.message);
+            console.error('加载工具数据时出错:', error);
+            return [];
         }
     }
 
     setupEventListeners() {
-        document.addEventListener('click', (e) => {
-            if (e.target.matches('.tool-card') || e.target.closest('.tool-card')) {
-                const card = e.target.closest('.tool-card');
-                const toolId = card.dataset.toolId;
-                this.handleToolClick(toolId);
+        // 工具卡片点击事件
+        document.querySelectorAll('.tool-card').forEach(card => {
+            const tryButton = card.querySelector('.btn[onclick^="handleToolClick"]');
+            const demoButton = card.querySelector('.btn[onclick^="showDemo"]');
+            
+            if (tryButton) {
+                const toolId = tryButton.getAttribute('onclick').match(/'([^']+)'/)[1];
+                tryButton.onclick = (e) => {
+                    e.preventDefault();
+                    this.handleToolClick(toolId);
+                };
+            }
+            
+            if (demoButton) {
+                const toolId = demoButton.getAttribute('onclick').match(/'([^']+)'/)[1];
+                demoButton.onclick = (e) => {
+                    e.preventDefault();
+                    this.showDemo(toolId);
+                };
             }
         });
 
-        window.addEventListener('load', () => {
-            this.hideLoading();
+        // 获取开始按钮
+        const getStartedBtn = document.querySelector('.btn[onclick="getStarted()"]');
+        if (getStartedBtn) {
+            getStartedBtn.onclick = (e) => {
+                e.preventDefault();
+                this.getStarted();
+            };
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
-    }
-
-    renderTools() {
-        const container = document.querySelector('.tools-grid');
-        if (!container) return;
-
-        container.innerHTML = this.tools.map(tool => this.createToolCard(tool)).join('');
-    }
-
-    createToolCard(tool) {
-        return `
-            <div class="tool-card" data-tool-id="${tool.id}">
-                <img src="${tool.icon}" alt="${tool.name}" class="tool-icon">
-                <h3>${tool.name}</h3>
-                <p>${tool.description}</p>
-                <button class="btn" onclick="handleToolClick('${tool.id}')">
-                    Try Now
-                </button>
-            </div>
-        `;
     }
 
     async handleToolClick(toolId) {
@@ -66,23 +82,48 @@ class AIToolsSuite {
             const tool = this.tools.find(t => t.id === toolId);
             if (!tool) throw new Error('工具不存在');
             
-            window.location.href = `/tools/${toolId}`;
+            // 模拟加载延迟
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            window.location.href = `/tools/${toolId}.html`;
         } catch (error) {
             this.showError('启动工具失败，请稍后重试');
+        } finally {
+            this.hideLoading();
         }
     }
 
+    async showDemo(toolId) {
+        this.showLoading();
+        try {
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            window.location.href = `/demos/${toolId}.html`;
+        } catch (error) {
+            this.showError('加载演示失败，请稍后重试');
+        } finally {
+            this.hideLoading();
+        }
+    }
+
+    getStarted() {
+        this.showLoading();
+        setTimeout(() => {
+            window.location.href = '/register.html';
+            this.hideLoading();
+        }, 1000);
+    }
+
     showLoading() {
-        this.isLoading = true;
-        const spinner = document.createElement('div');
-        spinner.className = 'loading-spinner';
-        document.body.appendChild(spinner);
+        const loading = document.querySelector('.loading');
+        if (loading) {
+            loading.style.display = 'flex';
+        }
     }
 
     hideLoading() {
-        this.isLoading = false;
-        const spinner = document.querySelector('.loading-spinner');
-        if (spinner) spinner.remove();
+        const loading = document.querySelector('.loading');
+        if (loading) {
+            loading.style.display = 'none';
+        }
     }
 
     showError(message) {
@@ -92,6 +133,6 @@ class AIToolsSuite {
 
 // 初始化应用
 document.addEventListener('DOMContentLoaded', () => {
-    const app = new AIToolsSuite();
-    app.init();
+    window.aiSuite = new AIToolsSuite();
 });
+
