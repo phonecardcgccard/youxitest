@@ -1,27 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Tool - {{tool_name}}</title>
+    <title>{{tool_name}} - AI Suite</title>
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="tool-container">
         <header class="tool-header">
+            <nav class="tool-nav">
+                <a href="/" class="btn btn-back">
+                    <i class="fas fa-arrow-left"></i> Back
+                </a>
+            </nav>
             <h1>{{tool_name}}</h1>
             <p>{{tool_description}}</p>
         </header>
 
         <main class="tool-content">
             <div class="tool-interface">
-                <!-- Tool specific interface -->
+                <div class="tool-options">
+                    <!-- Tool specific options -->
+                </div>
+                <div class="tool-input">
+                    <!-- Tool input area -->
+                </div>
             </div>
             <div class="tool-output">
                 <!-- Tool output area -->
             </div>
+            <div class="loading-spinner" style="display: none;"></div>
         </main>
     </div>
+
     <script src="/assets/js/tools/{{tool_id}}.js"></script>
 </body>
 </html>
+
