@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Generator - AI Suite</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="tool-container">
+        <header class="tool-header">
+            <nav class="tool-nav">
+                <a href="/" class="btn btn-back">
+                    <i class="fas fa-arrow-left"></i> Back
+                </a>
+            </nav>
+            <h1>AI Image Generator</h1>
+            <p>Create stunning images using advanced AI models</p>
+        </header>
+
+        <main class="tool-content">
+            <div class="tool-interface">
+                <div class="tool-options">
+                    <label for="prompt">描述你想要生成的图片：</label>
+                    <textarea id="prompt" rows="4" class="input-field"></textarea>
+                    
+                    <div class="option-group">
+                        <label for="style">风格：</label>
+                        <select id="style" class="select-field">
+                            <option value="realistic">写实风格</option>
+                            <option value="anime">动漫风格</option>
+                            <option value="art">艺术风格</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <label for="size">尺寸：</label>
+                        <select id="size" class="select-field">
+                            <option value="512x512">512 x 512</option>
+                            <option value="768x768">768 x 768</option>
+                            <option value="1024x1024">1024 x 1024</option>
+                        </select>
+                    </div>
+                    
+                    <button id="generateBtn" class="btn">
+                        <i class="fas fa-magic"></i> 生成图片
+                    </button>
+                </div>
+                
+                <div class="tool-output">
+                    <div id="result" class="result-container">
+                        <!-- 生成的图片将显示在这里 -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loading-spinner" style="display: none;"></div>
+        </main>
+    </div>
+
+    <script src="/assets/js/tools/image-gen.js"></script>
+</body>
+</html>
+
