@@ -6,7 +6,7 @@
     <title>Memory Master - Fun Brain Training Games</title>
     <meta name="description" content="Improve your memory with our fun brain training games. Challenge yourself with number, letter, and Chinese character memory games.">
     <meta name="keywords" content="memory game, brain training, number memory, letter memory, Chinese character memory, cognitive exercise">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/css/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -114,6 +114,36 @@
         </div>
     </header>
 
+    <!-- Hero Section -->
+    <section id="home" class="py-16 md:py-24 bg-gradient-to-b from-blue-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800">Train Your Brain <span class="text-blue-600">Everyday</span></h2>
+                    <p class="text-lg text-gray-600 mb-8">Improve your memory, focus, and cognitive skills with our fun and challenging memory games. Perfect for all ages!</p>
+                    <div class="flex space-x-4">
+                        <a href="#games" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition transform hover:scale-105 shadow-lg">
+                            Play Now <i class="fas fa-gamepad ml-2"></i>
+                        </a>
+                        <a href="#benefits" class="bg-white hover:bg-gray-100 text-blue-600 border border-blue-600 px-6 py-3 rounded-lg font-medium transition transform hover:scale-105 shadow">
+                            Learn Benefits <i class="fas fa-info-circle ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80">
+                        <div class="absolute top-0 left-0 w-full h-full bg-blue-100 rounded-full opacity-30 animate-pulse"></div>
+                        <div class="absolute top-4 left-4 w-full h-full bg-blue-200 rounded-full opacity-30 animate-pulse delay-100"></div>
+                        <div class="absolute top-8 left-8 w-full h-full bg-blue-300 rounded-full opacity-30 animate-pulse delay-200"></div>
+                        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Brain training" 
+                             class="relative w-full h-full object-cover rounded-full border-8 border-white shadow-xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Games Section -->
     <section id="games" class="py-16 bg-white">
         <div class="container mx-auto px-4">
@@ -154,7 +184,7 @@
                 <!-- Chinese Character Memory Game -->
                 <div class="game-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
                     <div class="h-48 bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center">
-                        <span class="text-white text-6xl font-bold">汉 字 记</span>
+                        <span class="text-white text-6xl font-bold">şş ×Ö ĽÇ</span>
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-3 text-gray-800">Chinese Character Memory</h3>
@@ -281,9 +311,9 @@
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
                     <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">About Memory Master</h2>
-                    <p class="text-gray-600 mb-4">Memory Master is a collection of scientifically-designed brain training games focused on improving working memory, pattern recognition, and cognitive skills.</p>
+                    <p class="text-gray-600 mb-4">Memory Master is a collection of scientifically-designed brain training games focused on improving working memory, pattern recognition, and cognitive flexibility.</p>
                     <p class="text-gray-600 mb-4">Our games are developed based on research from cognitive psychology and neuroscience to provide effective mental exercise.</p>
-                    <p class="text-gray-600 mb-6">Whether you're a student looking to improve learning, a professional wanting to stay sharp, or a senior aiming to maintain cognitive health, our games are for everyone!</p>
+                    <p class="text-gray-600 mb-6">Whether you're a student looking to improve learning, a professional wanting to stay sharp, or a senior aiming to maintain cognitive health, our games can help.</p>
                     <div class="flex space-x-4">
                         <a href="#" class="bg-blue-100 hover:bg-blue-200 text-blue-800 px-6 py-2 rounded-lg font-medium transition">
                             <i class="fab fa-facebook-f mr-2"></i> Share
@@ -435,7 +465,7 @@
                 title: "Chinese Character Memory Challenge",
                 instructions: "Memorize the sequence of Chinese characters shown, then repeat it correctly. This tests your visual memory.",
                 generateSequence: function(level) {
-                    const characters = ['爱', '好', '学', '生', '日', '月', '水', '火', '木', '金', '土', '人', '口', '手', '大', '小', '中', '国', '文', '字'];
+                    const characters = ['°®', 'şĂ', 'Ń§', 'Éú', 'ČŐ', 'ÔÂ', 'Ë®', '»đ', 'Äľ', '˝đ', 'ÍÁ', 'ČË', 'żÚ', 'ĘÖ', '´ó', 'Đˇ', 'ÖĐ', 'ąú', 'ÎÄ', '×Ö'];
                     const sequence = [];
                     for (let i = 0; i < level + 1; i++) { // Slightly shorter sequences for Chinese
                         const randomIndex = Math.floor(Math.random() * characters.length);
@@ -446,7 +476,7 @@
                 displayItem: function(item) {
                     return item;
                 },
-                inputOptions: ['爱', '好', '学', '生', '日', '月', '水', '火', '木', '金', '土', '人', '口', '手', '大', '小', '中', '国', '文', '字']
+                inputOptions: ['°®', 'şĂ', 'Ń§', 'Éú', 'ČŐ', 'ÔÂ', 'Ë®', '»đ', 'Äľ', '˝đ', 'ÍÁ', 'ČË', 'żÚ', 'ĘÖ', '´ó', 'Đˇ', 'ÖĐ', 'ąú', 'ÎÄ', '×Ö']
             }
         };
 
@@ -538,28 +568,45 @@
             document.getElementById('user-input-area').classList.remove('hidden');
         }
 
-        // Update the display of user input
+        // 修复BUG后的updateInputDisplay
         function updateInputDisplay() {
             const inputTiles = document.getElementById('input-tiles');
             const config = gameConfigs[currentGame];
-            
-            // Clear existing input display
+
+            // 清空输入区
             inputTiles.innerHTML = '';
-            
-            // Show user's current input
+
+            // 1. 显示用户已输入的内容
             userInput.forEach(item => {
                 const span = document.createElement('span');
                 span.textContent = config.displayItem(item);
                 span.classList.add('bg-blue-100', 'border', 'border-blue-300', 'rounded-lg', 'p-4', 'text-xl', 'font-medium', 'flex', 'items-center', 'justify-center');
                 inputTiles.appendChild(span);
             });
-            
-            // Add remaining input buttons
+
+            // 2. 显示剩余空格
             const remainingSlots = currentSequence.length - userInput.length;
             for (let i = 0; i < remainingSlots; i++) {
                 const div = document.createElement('div');
                 div.classList.add('border-2', 'border-dashed', 'border-gray-300', 'rounded-lg', 'p-4', 'text-xl', 'flex', 'items-center', 'justify-center');
                 inputTiles.appendChild(div);
+            }
+
+            // 3. 只在还没输入满时，显示可点击按钮
+            if (userInput.length < currentSequence.length) {
+                const optionsDiv = document.createElement('div');
+                optionsDiv.classList.add('col-span-full', 'flex', 'flex-wrap', 'justify-center', 'mt-4', 'gap-2');
+                config.inputOptions.forEach(item => {
+                    const button = document.createElement('button');
+                    button.textContent = config.displayItem(item);
+                    button.classList.add('memory-tile', 'bg-white', 'hover:bg-gray-100', 'border', 'border-gray-300', 'rounded-lg', 'px-4', 'py-2', 'text-lg', 'font-medium', 'transition');
+                    button.addEventListener('click', () => {
+                        userInput.push(item);
+                        updateInputDisplay();
+                    });
+                    optionsDiv.appendChild(button);
+                });
+                inputTiles.appendChild(optionsDiv);
             }
         }
 
@@ -625,8 +672,5 @@
     </script>
 </body>
 </html>
-
-
-
 
 
