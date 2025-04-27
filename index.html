@@ -4,117 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Suite - Advanced AI Tools Collection</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* 保留原有样式 */
-        /* ... 原有的 CSS 代码 ... */
-
-        /* 添加新样式 */
-        .tool-card {
-            position: relative;
-            overflow: hidden;
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #60a5fa;
+            --text-color: #1f2937;
+            --bg-color: #f3f4f6;
         }
 
-        .tool-status {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.875rem;
-            background: #10B981;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: var(--bg-color);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
+            padding: 2rem 0;
+            text-align: center;
         }
 
-        .tool-actions {
-            margin-top: 1rem;
-            display: flex;
-            gap: 1rem;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
 
-        .tool-btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 0.25rem;
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .features-section {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .cta-section {
             background: var(--primary-color);
             color: white;
-            cursor: pointer;
-            transition: all 0.2s;
+            padding: 4rem 0;
+            text-align: center;
         }
 
-        .tool-btn:hover {
-            background: var(--secondary-color);
-        }
-
-        .loading {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        .nav-menu {
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
             background: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            color: var(--text-color);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .nav-link:hover {
             color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            transition: transform 0.2s;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="nav-menu">
-        <div class="container nav-container">
-            <a href="/" class="nav-link">
-                <strong>AI Suite</strong>
-            </a>
-            <div class="nav-links">
-                <a href="#tools" class="nav-link">Tools</a>
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-        </div>
-    </nav>
-
     <header class="header">
         <div class="container">
             <h1>AI Suite</h1>
@@ -123,65 +113,38 @@
     </header>
 
     <main>
-        <section id="tools" class="container tools-grid">
+        <section class="container tools-grid">
             <div class="tool-card">
-                <div class="tool-status">Active</div>
                 <div class="tool-icon">🎨</div>
                 <h3>Image Generation</h3>
                 <p>Create stunning images using advanced AI models like Stable Diffusion.</p>
-                <div class="tool-actions">
-                    <button class="tool-btn" onclick="launchTool('image-gen')">
-                        <i class="fas fa-play"></i> Launch
-                    </button>
-                    <button class="tool-btn" onclick="showDemo('image-gen')">
-                        <i class="fas fa-eye"></i> Demo
-                    </button>
-                </div>
             </div>
             <div class="tool-card">
-                <div class="tool-status">Active</div>
                 <div class="tool-icon">🔄</div>
                 <h3>Image Variation</h3>
                 <p>Generate multiple variations of your images with AI assistance.</p>
-                <div class="tool-actions">
-                    <button class="tool-btn" onclick="launchTool('image-var')">
-                        <i class="fas fa-play"></i> Launch
-                    </button>
-                    <button class="tool-btn" onclick="showDemo('image-var')">
-                        <i class="fas fa-eye"></i> Demo
-                    </button>
-                </div>
             </div>
             <div class="tool-card">
-                <div class="tool-status">Active</div>
                 <div class="tool-icon">✨</div>
                 <h3>Image Enhancement</h3>
                 <p>Enhance and upscale your images using AI technology.</p>
-                <div class="tool-actions">
-                    <button class="tool-btn" onclick="launchTool('image-enhance')">
-                        <i class="fas fa-play"></i> Launch
-                    </button>
-                    <button class="tool-btn" onclick="showDemo('image-enhance')">
-                        <i class="fas fa-eye"></i> Demo
-                    </button>
-                </div>
             </div>
         </section>
 
-        <section id="features" class="features-section">
+        <section class="features-section">
             <div class="container">
                 <h2>Key Features</h2>
                 <div class="feature-list">
                     <div>
-                        <h3><i class="fas fa-plug"></i> Easy Integration</h3>
+                        <h3>Easy Integration</h3>
                         <p>Simple API integration with your existing projects.</p>
                     </div>
                     <div>
-                        <h3><i class="fas fa-bolt"></i> High Performance</h3>
+                        <h3>High Performance</h3>
                         <p>Fast processing and optimal resource utilization.</p>
                     </div>
                     <div>
-                        <h3><i class="fas fa-sliders-h"></i> Customizable</h3>
+                        <h3>Customizable</h3>
                         <p>Flexible settings to match your specific needs.</p>
                     </div>
                 </div>
@@ -192,69 +155,17 @@
             <div class="container">
                 <h2>Start Using AI Suite Today</h2>
                 <p>Transform your workflow with our powerful AI tools</p>
-                <a href="#" class="btn" onclick="getStarted()">Get Started</a>
+                <a href="#" class="btn">Get Started</a>
             </div>
         </section>
     </main>
 
-    <footer id="contact" class="container" style="padding: 2rem 0; text-align: center;">
+    <footer class="container" style="padding: 2rem 0; text-align: center;">
         <p>© 2024 AI Suite. All rights reserved.</p>
-        <div style="margin-top: 1rem;">
-            <a href="#" class="nav-link"><i class="fab fa-github"></i> GitHub</a>
-            <a href="#" class="nav-link"><i class="fab fa-twitter"></i> Twitter</a>
-            <a href="#" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
-        </div>
     </footer>
-
-    <div class="loading">
-        <div class="loading-spinner"></div>
-    </div>
-
-    <script>
-        function launchTool(toolId) {
-            showLoading();
-            setTimeout(() => {
-                hideLoading();
-                window.location.href = `/tools/${toolId}`;
-            }, 1000);
-        }
-
-        function showDemo(toolId) {
-            showLoading();
-            setTimeout(() => {
-                hideLoading();
-                window.location.href = `/demos/${toolId}`;
-            }, 1000);
-        }
-
-        function getStarted() {
-            showLoading();
-            setTimeout(() => {
-                hideLoading();
-                window.location.href = '/register';
-            }, 1000);
-        }
-
-        function showLoading() {
-            document.querySelector('.loading').style.display = 'flex';
-        }
-
-        function hideLoading() {
-            document.querySelector('.loading').style.display = 'none';
-        }
-
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
+
 
 
 
