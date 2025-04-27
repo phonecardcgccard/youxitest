@@ -1,0 +1,25 @@
+{
+    "tools": [
+        {
+            "id": "image-generator",
+            "name": "AI Image Generator",
+            "description": "Create stunning images using advanced AI models",
+            "icon": "/assets/images/image-icon.svg",
+            "category": "image"
+        },
+        {
+            "id": "text-generator",
+            "name": "AI Text Generator",
+            "description": "Generate creative text content with AI",
+            "icon": "/assets/images/text-icon.svg",
+            "category": "text"
+        },
+        {
+            "id": "code-assistant",
+            "name": "AI Code Assistant",
+            "description": "Get help with coding and debugging",
+            "icon": "/assets/images/code-icon.svg",
+            "category": "code"
+        }
+    ]
+}
