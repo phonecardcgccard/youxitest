@@ -4,133 +4,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory Master - Fun Brain Training Games</title>
-    <!-- 引入必要的样式和脚本 -->
+    <meta name="description" content="Improve your memory with our fun brain training games. Challenge yourself with number, letter, and Chinese character memory games.">
+    <meta name="keywords" content="memory game, brain training, number memory, letter memory, Chinese character memory, cognitive exercise">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* 样式保持与原版一致 */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .card-flip {
+            perspective: 1000px;
+        }
+        
+        .card-flip-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .card-flip.flipped .card-flip-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .card-flip-front, .card-flip-back {
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .card-flip-back {
+            transform: rotateY(180deg);
+        }
+        
+        .game-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .memory-tile {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .memory-tile:hover {
+            transform: scale(1.03);
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body class="text-gray-800">
-    <header>
-        <!-- Header 部分保持不变 -->
+    <!-- Header with Navigation -->
+    <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-brain text-3xl"></i>
+                    <h1 class="text-2xl md:text-3xl font-bold">Memory Master</h1>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#home" class="hover:text-blue-200 font-medium transition">Home</a>
+                    <a href="#games" class="hover:text-blue-200 font-medium transition">Games</a>
+                    <a href="#about" class="hover:text-blue-200 font-medium transition">About</a>
+                    <a href="#benefits" class="hover:text-blue-200 font-medium transition">Benefits</a>
+                </nav>
+                <button class="md:hidden text-2xl" id="mobile-menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-blue-700 py-4" id="mobile-menu">
+            <div class="container mx-auto px-4 flex flex-col space-y-3">
+                <a href="#home" class="hover:text-blue-200 font-medium transition">Home</a>
+                <a href="#games" class="hover:text-blue-200 font-medium transition">Games</a>
+                <a href="#about" class="hover:text-blue-200 font-medium transition">About</a>
+                <a href="#benefits" class="hover:text-blue-200 font-medium transition">Benefits</a>
+            </div>
+        </div>
     </header>
 
-    <section id="game-area">
-        <!-- 游戏区域，保持与原版一致 -->
+    <!-- Hero Section -->
+    <section id="home" class="py-16 md:py-24 bg-gradient-to-b from-blue-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800">Train Your Brain <span class="text-blue-600">Everyday</span></h2>
+                    <p class="text-lg text-gray-600 mb-8">Improve your memory, focus, and cognitive skills with our fun and challenging memory games. Perfect for all ages!</p>
+                    <div class="flex space-x-4">
+                        <a href="#games" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition transform hover:scale-105 shadow-lg">
+                            Play Now <i class="fas fa-gamepad ml-2"></i>
+                        </a>
+                        <a href="#benefits" class="bg-white hover:bg-gray-100 text-blue-600 border border-blue-600 px-6 py-3 rounded-lg font-medium transition transform hover:scale-105 shadow">
+                            Learn Benefits <i class="fas fa-info-circle ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80">
+                        <div class="absolute top-0 left-0 w-full h-full bg-blue-100 rounded-full opacity-30 animate-pulse"></div>
+                        <div class="absolute top-4 left-4 w-full h-full bg-blue-200 rounded-full opacity-30 animate-pulse delay-100"></div>
+                        <div class="absolute top-8 left-8 w-full h-full bg-blue-300 rounded-full opacity-30 animate-pulse delay-200"></div>
+                        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                             alt="Brain training" 
+                             class="relative w-full h-full object-cover rounded-full border-8 border-white shadow-xl">
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Mobile menu toggle
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', function () {
-                const isExpanded = mobileMenu.classList.contains('hidden');
-                mobileMenu.classList.toggle('hidden');
-                mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-            });
-
-            // 游戏逻辑模块化
-            const gameModule = (() => {
-                let currentGame = null;
-                let currentLevel = 1;
-                let currentScore = 0;
-                let currentSequence = [];
-                let userInput = [];
-
-                const gameConfigs = {
-                    number: {
-                        title: "Number Memory Challenge",
-                        instructions: "Memorize the sequence of numbers shown, then repeat it correctly.",
-                        generateSequence(level) {
-                            return Array.from({ length: level + 2 }, () => Math.floor(Math.random() * 10));
-                        },
-                        displayItem(item) {
-                            return item.toString();
-                        },
-                        inputOptions: Array.from({ length: 10 }, (_, i) => i),
-                    },
-                    // 其他游戏逻辑保持一致
-                };
-
-                const startGame = (gameType) => {
-                    currentGame = gameType;
-                    currentLevel = 1;
-                    currentScore = 0;
-
-                    // 更新 UI，隐藏其他区域
-                    document.getElementById('games').classList.add('hidden');
-                    document.getElementById('game-area').classList.remove('hidden');
-
-                    const config = gameConfigs[gameType];
-                    document.getElementById('game-title').textContent = config.title;
-                    document.getElementById('instructions-text').textContent = config.instructions;
-
-                    startRound();
-                };
-
-                const startRound = () => {
-                    const config = gameConfigs[currentGame];
-                    currentSequence = config.generateSequence(currentLevel);
-                    userInput = [];
-
-                    // 渲染提示序列
-                    const sequenceDisplay = document.getElementById('sequence-content');
-                    sequenceDisplay.innerHTML = currentSequence
-                        .map(item => `<span>${config.displayItem(item)}</span>`)
-                        .join('');
-
-                    // 显示序列后隐藏并开始用户输入
-                    setTimeout(() => {
-                        sequenceDisplay.innerHTML = '';
-                        setupUserInput(config);
-                    }, currentSequence.length * 1000);
-                };
-
-                const setupUserInput = (config) => {
-                    const inputArea = document.getElementById('input-tiles');
-                    inputArea.innerHTML = config.inputOptions
-                        .map(
-                            item => `<button class="memory-tile">${config.displayItem(item)}</button>`
-                        )
-                        .join('');
-                    document.querySelectorAll('.memory-tile').forEach((button, index) => {
-                        button.addEventListener('click', () => {
-                            userInput.push(config.inputOptions[index]);
-                            validateInput();
-                        });
-                    });
-                };
-
-                const validateInput = () => {
-                    if (userInput.length === currentSequence.length) {
-                        const isCorrect = userInput.every((val, idx) => val === currentSequence[idx]);
-                        showResult(isCorrect);
-                    }
-                };
-
-                const showResult = (isCorrect) => {
-                    const resultDisplay = document.getElementById('result-display');
-                    resultDisplay.textContent = isCorrect
-                        ? 'Correct! Proceeding to the next level.'
-                        : 'Incorrect! Try again.';
-                    if (isCorrect) {
-                        currentLevel++;
-                        currentScore += currentLevel * 10;
-                        startRound();
-                    }
-                };
-
-                return {
-                    startGame,
-                };
-            })();
-
-            // 绑定事件
-            document.getElementById('start-game-btn').addEventListener('click', () => {
-                gameModule.startGame('number');
-            });
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
         });
     </script>
 </body>
